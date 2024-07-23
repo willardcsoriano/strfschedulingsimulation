@@ -16,9 +16,10 @@
         <h2>Column Explanations</h2>
         <ul>
             <li><b>Job</b>: Unique identifier for each job/process in the simulation.</li>
-            <li><b>Arrival Time</b>: Time at which each job arrives in the system. In this simulation, all jobs arrive at time 0.</li>
-            <li><b>Burst Time</b>: Total time required for each job to complete execution.</li>
-            <li><b>Completion Time</b>: Time at which each job finishes its execution.</li>
+            <li><b>Arrival Time</b>: Time at which each job arrives in the system. In this simulation, jobs arrive at random times between 1 and 7.</li>
+            <li><b>Burst Time</b>: Total time required for each job to complete execution, randomly assigned between 1 and 10.</li>
+            <li><b>Completion Time</b>: Time at which each job finishes its execution. Calculated as:
+                <br><code>Completion Time = Turnaround Time + Arrival Time</code></li>
             <li><b>Turnaround Time</b>: Total time taken from the arrival of the job to its completion. Calculated as:
                 <br><code>Turnaround Time = Completion Time - Arrival Time</code></li>
             <li><b>Waiting Time</b>: Total time a job spends waiting in the queue to be executed. Calculated as:
