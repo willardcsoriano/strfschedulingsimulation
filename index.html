@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRTF Scheduling Simulation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <p>Name: Willard Soriano <span class="align-right">Course: Modeling and Simulation Theory Laboratory</span></p>
+    <p>Section: CSS142L_FOPI01_4Q2324 <span class="align-right">Activity: FA1.1</span></p>
+    
+    <h1 class="center-text">SRTF Scheduling Simulation</h1>
+        
+    <div id="explanations">
+        <h2>Column Explanations</h2>
+        <ul>
+            <li><b>Job</b>: Unique identifier for each job/process in the simulation.</li>
+            <li><b>Arrival Time</b>: Time at which each job arrives in the system. In this simulation, all jobs arrive at time 0.</li>
+            <li><b>Burst Time</b>: Total time required for each job to complete execution.</li>
+            <li><b>Completion Time</b>: Time at which each job finishes its execution.</li>
+            <li><b>Turnaround Time</b>: Total time taken from the arrival of the job to its completion. Calculated as:
+                <br><code>Turnaround Time = Completion Time - Arrival Time</code></li>
+            <li><b>Waiting Time</b>: Total time a job spends waiting in the queue to be executed. Calculated as:
+                <br><code>Waiting Time = Turnaround Time - Burst Time</code></li>
+        </ul>
+
+        <h2>SRTF Scheduling Algorithm Explanation</h2>
+        <p>
+            The Shortest-Remaining-Time-First (SRTF) scheduling algorithm is a preemptive version of the Shortest Job Next (SJN) scheduling. It always selects the job with the shortest remaining time to execute next. If a new job arrives with a shorter burst time than the remaining time of the current job, the current job is preempted, and the new job is executed.
+        </p>
+        <p>Steps in the Algorithm:</p>
+        <ol>
+            <li><b>Initialization</b>: At time 0, all jobs arrive in the system.</li>
+            <li><b>Job Selection</b>: The algorithm selects the job with the shortest remaining burst time.</li>
+            <li><b>Execution</b>: The selected job is executed for one time unit.</li>
+            <li><b>Preemption Check</b>: If a new job arrives with a shorter burst time, it preempts the current job.</li>
+            <li><b>Completion Check</b>: If a job completes its execution, its completion time is recorded.</li>
+            <li><b>Repeat</b>: Steps 2-5 are repeated until all jobs are completed.</li>
+        </ol>
+        <p>
+            This approach ensures that the job with the shortest remaining time gets executed first, minimizing the waiting time and improving the overall efficiency of the system.
+        </p>
+    </div>
+
+    <button onclick="simulateSRTF()">Run Simulation</button>
+    <div id="results"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
