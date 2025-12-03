@@ -5,17 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SRTF Scheduling Simulation</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+    };
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+
     <style>
         /* Custom styles for the Gantt Chart structure */
         .gantt-chart-container { 
-            /* Ensure the container is ready for flexible children */
             width: 100%;
-            overflow-x: auto; /* Keep scrolling just in case the chart is extremely wide */
+            overflow-x: auto;
         }
         .gantt-chart { 
             display: flex; 
             height: 40px; 
-            min-width: 100%; /* Important: forces the chart to stretch to container width */
+            min-width: 100%;
             position: relative;
         }
         .gantt-block { 
@@ -27,12 +36,11 @@
             white-space: nowrap;
             overflow: hidden;
             border-left: 1px solid rgba(255, 255, 255, 0.5); 
-            /* Width will be set dynamically in JS */
         }
         .time-axis { 
             display: flex; 
-            width: 100%; /* Must match the width of the gantt-chart */
-            margin-left: -1px; /* Align first label correctly */
+            width: 100%;
+            margin-left: -1px;
             position: relative;
         }
         .time-label { 
@@ -40,7 +48,6 @@
             text-align: right; 
             font-size: 0.75rem; 
             margin-top: 4px;
-            /* Width will be set dynamically in JS */
         }
         .time-label::after { 
             content: ''; 
@@ -52,23 +59,23 @@
             background-color: #4b5563; 
         }
         
-        /* Sticky header styles (from the previous fix, ensure z-index is high) */
+        /* Sticky header styles */
         .sticky-header th {
             position: sticky;
             top: 0;
             z-index: 20; 
-            background-color: #f9fafb; /* bg-gray-50 color */
+            background-color: #f9fafb;
         }
     </style>
     <script>
-        // Custom Tailwind configuration (using a nice blue color)
+        // Custom Tailwind configuration
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'primary': '#3b82f6', // Tailwind blue-500
-                        'secondary': '#10b981', // Tailwind emerald-500
-                        'idle': '#9ca3af', // Tailwind gray-400
+                        'primary': '#3b82f6',
+                        'secondary': '#10b981',
+                        'idle': '#9ca3af',
                     }
                 }
             }
@@ -76,6 +83,7 @@
     </script>
 </head>
 <body class="bg-gray-100 min-h-screen">
+    
     <header class="bg-gray-800 text-white shadow-lg p-4 flex flex-col md:flex-row justify-between items-start md:items-center text-sm">
         
         <div class="flex flex-col sm:flex-row space-y-1 sm:space-y-0 sm:space-x-6 mb-2 md:mb-0">
@@ -88,13 +96,46 @@
             <p>Activity: <span class="font-bold">FA1.1</span></p>
         </div>
     </header>
-
     <main class="container mx-auto p-6">
-        <h1 class="text-4xl font-extrabold text-center text-gray-800 mb-8">
+        <h1 class="text-4xl font-extrabold text-center text-gray-800 mb-2">
             <span class="text-primary">SRTF</span> Scheduling Simulation ⏱️
         </h1>
         
-        <div class="bg-white shadow-xl rounded-lg p-6 mb-8">
+        <section class="text-center text-gray-600 mb-6 bg-blue-100/50 p-3 rounded-lg border border-blue-200">
+            <h2 class="text-xl font-semibold text-gray-700 mb-2">Simulation Objective: SRTF Analysis</h2>
+            
+            <p class="text-sm mb-3 font-semibold text-gray-800">
+                This tool simulates <b>100 randomly generated jobs</b> to demonstrate the efficiency of the <b>Shortest-Remaining-Time-First (SRTF)</b> scheduling algorithm.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-blue-300 pt-3">
+                
+                <div class="text-left p-2 bg-blue-50 rounded-lg">
+                    <p class="font-bold text-gray-800 mb-1">How SRTF Works (Preemption):</p>
+                    <p class="text-xs">SRTF is a <b>preemptive</b> CPU scheduling algorithm. It always runs the job that needs the <b>least amount of time remaining</b> to finish. If a shorter job arrives, it immediately interrupts (preempts) the running job. </p>
+                </div>
+
+                <div class="text-left p-2 bg-blue-50 rounded-lg">
+                    <p class="font-bold text-gray-800 mb-1">Job Parameters & Goal Metrics:</p>
+                    <ul class="list-disc list-inside ml-4 text-xs space-y-0.5">
+                        <li><b>Burst Time (BT):</b> Randomly set between 1 and 10.</li>
+                        <li><b>Arrival Time (AT):</b> Randomly set between 1 and 7.</li>
+                        <li>Goal: Minimize Average <b>Waiting Time (WT)</b> and <b>Turnaround Time (TAT)</b>.</li>
+                    </ul>
+                </div>
+
+                <div class="text-left p-2 bg-blue-50 rounded-lg">
+                    <p class="font-bold text-gray-800 mb-1">Real-Life Application 🌎:</p>
+                    <p class="text-xs">
+                        This scheduling concept is critical in <b>Real-Time Operating Systems (RTOS)</b> used in applications like <b>avionics, industrial control, and robotics</b>. By prioritizing the shortest task remaining, SRTF helps guarantee that time-critical tasks (like sensor readings) are executed with the lowest possible latency.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="bg-white shadow-xl rounded-lg p-6 mb-8">
+            
             <div class="flex justify-center space-x-4 mb-6">
                 <button onclick="simulateSRTF()" class="bg-primary hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-lg shadow-md transition duration-300">
                     Run 100-Job Simulation
@@ -109,35 +150,36 @@
                     <div>
                         <h2 class="text-xl font-semibold text-gray-700 mb-3 border-b pb-1 border-secondary">📊 Column Definitions</h2>
                         <ul class="list-disc list-inside space-y-2 text-gray-600">
-                            <li><strong>Job (PID)</strong>: Unique identifier.</li>
-                            <li><strong>Arrival Time (AT)</strong>: Time job arrives (1-7).</li>
-                            <li><strong>Burst Time (BT)</strong>: Total execution time required (1-10).</li>
-                            <li><strong>Completion Time (CT)</strong>: $\text{AT} + \text{TAT}$.</li>
-                            <li><strong>Turnaround Time (TAT)</strong>: $\text{CT} - \text{AT}$. Total time in system.</li>
-                            <li><strong>Waiting Time (WT)</strong>: $\text{TAT} - \text{BT}$. Time spent idle in the queue.</li>
+                            <li><b>Job (PID)</b>: Unique identifier.</li>
+                            <li><b>Arrival Time (AT)</b>: Time job arrives (1-7).</li>
+                            <li><b>Burst Time (BT)</b>: Total execution time required (1-10).</li>
+                            <li><b>Completion Time (CT)</b>: $\text{AT} + \text{TAT}$.</li>
+                            <li><b>Turnaround Time (TAT)</b>: $\text{CT} - \text{AT}$. Total time in system.</li>
+                            <li><b>Waiting Time (WT)</b>: $\text{TAT} - \text{BT}$. Time spent idle in the queue.</li>
                         </ul>
                     </div>
                     <div>
                         <h2 class="text-xl font-semibold text-gray-700 mb-3 border-b pb-1 border-secondary">🧠 SRTF Algorithm Logic</h2>
                         <p class="text-gray-600 mb-3">
-                            The **Shortest-Remaining-Time-First (SRTF)** algorithm is a **preemptive** scheduler. It always executes the job currently in the ready queue with the shortest time *remaining* to completion.
+                            The <b>Shortest-Remaining-Time-First (SRTF)</b> algorithm is a <b>preemptive</b> scheduler. It always executes the job currently in the ready queue with the shortest time *remaining* to completion.
                         </p>
                         <ol class="list-decimal list-inside space-y-2 text-gray-600">
                             <li>Check for new arrivals at the current time $t$.</li>
                             <li>Select the job with the minimum $\text{Remaining Time}$ from all arrived jobs.</li>
                             <li>Execute for 1 time unit.</li>
-                            <li>If a new job arrives with a shorter $\text{Remaining Time}$, the CPU **preempts** the current job and switches.</li>
+                            <li>If a new job arrives with a shorter $\text{Remaining Time}$, the CPU preempts the current job and switches.</li>
                         </ol>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div id="results">
-            <div class="text-center p-10 bg-white rounded-lg shadow-inner text-gray-500 italic">
-                Click **"Run 100-Job Simulation"** to generate and analyze the SRTF results.
+        <section id="results">
+            <div class="text-center p-10 bg-white rounded-lg shadow-inner text-gray-500 italic border-dashed border-2 border-gray-300">
+                <p class="text-lg font-semibold mb-2 text-gray-700">Ready to Analyze Scheduling Efficiency?</p>
+                <p>Click the "Run 100-Job Simulation" button above to generate random jobs and view the calculated <b>Average Waiting Time</b> and the execution sequence.</p>
             </div>
-        </div>
+        </section>
     </main>
 
     <script src="script.js"></script>
