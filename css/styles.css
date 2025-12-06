@@ -1,0 +1,57 @@
+/* ===== Gantt Chart Styling ===== */
+
+.gantt-chart-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.gantt-chart {
+    display: flex;
+    height: 40px;
+    position: relative;
+}
+
+.gantt-block {
+    height: 100%;
+    line-height: 40px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* ===== Time Axis ===== */
+
+.time-axis {
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.time-label {
+    position: relative;
+    text-align: right;
+    font-size: 0.75rem;
+    margin-top: 4px;
+}
+
+.time-label::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: 0;
+    height: 8px;
+    width: 1px;
+    background-color: #4b5563;
+}
+
+/* ===== Sticky table header ===== */
+
+.sticky-header th {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background-color: #f9fafb;
+}
