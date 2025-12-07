@@ -1,54 +1,44 @@
-/* ===== Gantt Chart Styling ===== */
-
-.gantt-chart-container {
+.gantt-chart-container { 
     width: 100%;
     overflow-x: auto;
 }
-
-.gantt-chart {
-    display: flex;
-    height: 40px;
+.gantt-chart { 
+    display: flex; 
+    height: 40px; 
+    min-width: 100%;
     position: relative;
 }
-
-.gantt-block {
-    height: 100%;
-    line-height: 40px;
-    text-align: center;
-    color: white;
+.gantt-block { 
+    height: 100%; 
+    line-height: 40px; 
+    text-align: center; 
+    color: white; 
     font-weight: bold;
     white-space: nowrap;
     overflow: hidden;
-    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255,255,255,0.5);
 }
-
-/* ===== Time Axis ===== */
-
-.time-axis {
-    display: flex;
+.time-axis { 
+    display: flex; 
     width: 100%;
+    margin-left: -1px;
     position: relative;
 }
-
-.time-label {
-    position: relative;
-    text-align: right;
-    font-size: 0.75rem;
+.time-label { 
+    position: relative; 
+    text-align: right; 
+    font-size: 0.75rem; 
     margin-top: 4px;
 }
-
-.time-label::after {
-    content: '';
-    position: absolute;
-    top: -5px;
-    right: 0;
-    height: 8px;
-    width: 1px;
-    background-color: #4b5563;
+.time-label::after { 
+    content: ''; 
+    position: absolute; 
+    top: -5px; 
+    right: 0; 
+    height: 8px; 
+    width: 1px; 
+    background-color: #4b5563; 
 }
-
-/* ===== Sticky table header ===== */
-
 .sticky-header th {
     position: sticky;
     top: 0;

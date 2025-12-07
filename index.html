@@ -7,6 +7,8 @@
 
     <link rel="icon" type="image/x-icon" href="favicon.ico"> 
 
+    <link rel="stylesheet" type="text/css" href="css/styles.css"> 
+
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -19,57 +21,6 @@
         };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
-
-    <!-- Gantt + sticky-table custom styles -->
-    <style>
-        .gantt-chart-container { 
-            width: 100%;
-            overflow-x: auto;
-        }
-        .gantt-chart { 
-            display: flex; 
-            height: 40px; 
-            min-width: 100%;
-            position: relative;
-        }
-        .gantt-block { 
-            height: 100%; 
-            line-height: 40px; 
-            text-align: center; 
-            color: white; 
-            font-weight: bold;
-            white-space: nowrap;
-            overflow: hidden;
-            border-left: 1px solid rgba(255,255,255,0.5);
-        }
-        .time-axis { 
-            display: flex; 
-            width: 100%;
-            margin-left: -1px;
-            position: relative;
-        }
-        .time-label { 
-            position: relative; 
-            text-align: right; 
-            font-size: 0.75rem; 
-            margin-top: 4px;
-        }
-        .time-label::after { 
-            content: ''; 
-            position: absolute; 
-            top: -5px; 
-            right: 0; 
-            height: 8px; 
-            width: 1px; 
-            background-color: #4b5563; 
-        }
-        .sticky-header th {
-            position: sticky;
-            top: 0;
-            z-index: 20;
-            background-color: #f9fafb;
-        }
-    </style>
 
     <!-- Tailwind custom config -->
     <script>
@@ -135,7 +86,7 @@
                 </div>
 
                 <div class="text-left p-2 bg-blue-50 rounded-lg">
-                    <p class="font-bold text-gray-800 mb-1">Real-Life Application 🌎:</p>
+                    <p class="font-bold text-gray-800 mb-1">Real-Life Application:</p>
                     <p class="text-xs">
                         This scheduling concept is critical in <b>Real-Time Operating Systems (RTOS)</b> used in applications like <b>avionics, industrial control, and robotics</b>. By prioritizing the shortest task remaining, SRTF helps guarantee that time-critical tasks (like sensor readings) are executed with the lowest possible latency.
                     </p>
