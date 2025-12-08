@@ -146,15 +146,27 @@ A typical result displays:
 SRTF-100Job-Stochastic-Analysis/
 │
 ├── index.html
+├── favicon.ico
+├── README.md
+│
 ├── css/
 │   └── styles.css
-├── js/
-│   ├── main.js
-│   ├── srtf.js
-│   └── utils.js
-├── favicon.ico
-├── LICENSE
-└── README.md
+│
+└── js/
+    ├── main.js
+    │
+    ├── core/
+    │   ├── metrics.js
+    │   └── srtf.js
+    │
+    ├── models/
+    │   └── Process.js
+    │
+    └── ui/
+        ├── domEvents.js
+        ├── ganttRenderer.js
+        ├── summaryRenderer.js
+        └── tableRenderer.js
 ```
 
 ---
