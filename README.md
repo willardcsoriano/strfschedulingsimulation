@@ -9,7 +9,7 @@ This is a **web-based simulation and statistical analysis** of the **Shortest Re
 
 SRTF is a **preemptive** algorithm designed to minimize average waiting time by always executing the process with the shortest time *remaining* until completion.
 
-🔗 **Live Demo:** [SRTF Scheduling Simulation](https://willardcsoriano.github.io/strfschedulingsimulation/)
+🔗 **Live Demo:** [SRTF Scheduling Simulation](https://willardcsoriano.github.io/SRTF-100Job-Stochastic-Analysis/)
 
 ---
 
