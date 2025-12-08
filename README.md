@@ -62,5 +62,5 @@ The simulation runs time-step by time-step:
 To run this simulation locally, clone the repository and navigate to the project directory:
 
 ```bash
-git clone [https://github.com/willardcsoriano/SRTF-100Job-Stochastic-Analysis.git](https://github.com/willardcsoriano/SRTF-100Job-Stochastic-Analysis.git)
+git clone https://github.com/willardcsoriano/SRTF-100Job-Stochastic-Analysis.git
 cd SRTF-100Job-Stochastic-Analysis
